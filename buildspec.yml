@@ -11,8 +11,6 @@ phases:
     commands:
       - echo "Running build..."
       - npm run build
-      - echo "Exporting static site..."
-      - npx next export || (echo '❌ next export failed' && exit 1)
   post_build:
     commands:
       - echo "Uploading to S3..."
