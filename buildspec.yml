@@ -2,13 +2,20 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 18
     commands:
+      - echo "Installing dependencies..."
       - npm ci
   build:
     commands:
-      - npx next export
+      - echo "Running build..."
+      - npm run build
+      - echo "Exporting static site..."
+      - npx next export || (echo '❌ next export failed' && exit 1)
   post_build:
     commands:
+      - echo "Uploading to S3..."
       - aws s3 sync out/ s3://furuta-backet/ --delete
 artifacts:
   files:
