@@ -14,7 +14,7 @@ phases:
   post_build:
     commands:
       - echo "Uploading to S3..."
-      - aws s3 sync out/ s3://furuta-backet/ --delete
+      - aws s3 sync out/ s3://furuta-backet/out/ --delete
 artifacts:
   files:
     - '**/*'
